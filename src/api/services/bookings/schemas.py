@@ -46,7 +46,11 @@ def validate_hour_precision(v: time) -> time:
 
 type BookingTime = Annotated[
     time,
-    Field(ge=time(hour=BOOKING_TIME_MIN_HOUR), le=time(hour=BOOKING_TIME_MAX_HOUR), examples=["14:00", "15:00:00", "18:00:00.000Z"]),
+    Field(
+        ge=time(hour=BOOKING_TIME_MIN_HOUR),
+        le=time(hour=BOOKING_TIME_MAX_HOUR),
+        examples=["14:00", "15:00:00", "18:00:00.000Z"],
+    ),
     AfterValidator(validate_hour_precision),
 ]
 
@@ -72,3 +76,7 @@ class BookingOut(BaseModel):
     booking_time: BookingTime
     guests: GuestCount
     status: BookingStatus
+
+
+class ErrorResponse(BaseModel):
+    detail: str

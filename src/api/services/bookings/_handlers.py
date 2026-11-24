@@ -1,7 +1,9 @@
 from fastapi import Request, status
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
 from .exceptions import BookingNotFound, SlotAlreadyBooked
+from .schemas import ErrorResponse
 
 
 async def handle_booking_not_found(
@@ -10,7 +12,7 @@ async def handle_booking_not_found(
 ) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
-        content={"detail": "Booking not found"},
+        content=jsonable_encoder(ErrorResponse(detail="Booking not found")),
     )
 
 
@@ -20,5 +22,5 @@ async def handle_slot_already_booked(
 ) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT,
-        content={"detail": "Slot is already booked"},
+        content=jsonable_encoder(ErrorResponse(detail="Slot is already booked")),
     )
