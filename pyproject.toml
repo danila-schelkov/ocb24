@@ -6,8 +6,13 @@ readme = "README.md"
 authors = [{ name = "Danila Schelkov", email = "me@donutquine.dev" }]
 requires-python = ">=3.13"
 dependencies = [
+    "aiosqlite>=0.22.1",
     "fastapi[standard]>=0.165.0",
+    "sqlalchemy[asyncio]>=2.1.9",
 ]
+
+[dependency-groups]
+dev = ["isort>=9.0.2", "ruff>=0.17.6", "ty>=0.0.109"]
 
 [project.scripts]
 api = "api.__main__:main"
@@ -19,9 +24,5 @@ build-backend = "uv_build"
 [tool.uv.build-backend]
 module-name = "api"
 
-[dependency-groups]
-dev = [
-    "isort>=9.0.2",
-    "ruff>=0.17.6",
-    "ty>=0.0.109",
-]
+[tool.isort]
+profile = "black"
