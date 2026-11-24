@@ -2,7 +2,7 @@ from collections.abc import Sequence
 from datetime import date
 from typing import Annotated
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, status
 
 from ._dependencies import BookingServiceDep
 from .schemas import BookingCreate, BookingId, BookingOut
@@ -10,7 +10,10 @@ from .schemas import BookingCreate, BookingId, BookingOut
 router = APIRouter(prefix="/bookings")
 
 
-@router.post("")
+@router.post(
+    "",
+    status_code=status.HTTP_201_CREATED,
+)
 async def _create_booking(
     new_booking: BookingCreate, service: BookingServiceDep
 ) -> BookingOut:

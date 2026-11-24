@@ -1,3 +1,4 @@
-from ._router import router
+from ._api import register_bookings_service
 
-__all__ = ["router"]
+
+__all__ = ["register_bookings_service"]

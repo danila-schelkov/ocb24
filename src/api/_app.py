@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from api.database import Base, engine
 
-from .services.bookings import router as bookings_router
+from .services.bookings import register_bookings_service
 
 
 @asynccontextmanager
@@ -16,4 +16,5 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(bookings_router)
+
+register_bookings_service(app)
