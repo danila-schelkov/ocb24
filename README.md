@@ -90,19 +90,18 @@ uv run api
 а) либо воспользовался бы протоколами со всеми нужными полями. 
 б) либо сделал репозиторий и сервис Generic, 
    требовал бы реализации защищённого метода 
-    ```python
+```python
+import abc
 
-    import abc
+class AbstractBookingService[M, R](ABC, BookingService[R]):
+    # Здесь override методы интерфейса BookingService, которые используют 
+    # _booking_model_to_out, чтобы преобразовать результаты из Repository.
+    ...
 
-    class AbstractBookingService[M, R](ABC, BookingService[R]):
-        # Здесь override методы интерфейса BookingService, которые используют 
-        # _booking_model_to_out, чтобы преобразовать результаты из Repository.
-        ...
-
-        @classmethod
-        @abc.abstractmethod
-        def _booking_model_to_out(cls, model: M) -> R`.
-    ```
+    @classmethod
+    @abc.abstractmethod
+    def _booking_model_to_out(cls, model: M) -> R`.
+```
 
 ### CI/CD
 
