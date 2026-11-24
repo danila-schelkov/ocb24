@@ -1,0 +1,18 @@
+[project]
+name = "ocb24"
+version = "0.1.0"
+description = "Тестовое задание ОСЬ"
+readme = "README.md"
+authors = [{ name = "Danila Schelkov", email = "me@donutquine.dev" }]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+api = "api.__main__:main"
+
+[build-system]
+requires = ["uv_build>=0.10.0,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "api"
