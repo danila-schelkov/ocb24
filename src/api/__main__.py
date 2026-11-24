@@ -1,8 +1,8 @@
-from . import hello
+import uvicorn
 
 
 def main():
-    hello()
+    uvicorn.run("api._app:app")
 
 
 if __name__ == "__main__":
