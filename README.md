@@ -100,7 +100,7 @@ class AbstractBookingService[M, R](ABC, BookingService[R]):
 
     @classmethod
     @abc.abstractmethod
-    def _booking_model_to_out(cls, model: M) -> R`.
+    def _booking_model_to_out(cls, model: M) -> R: ...
 ```
 
 ### CI/CD
